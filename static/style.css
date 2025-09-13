@@ -184,3 +184,23 @@ textarea {
 .required {
     color: #ef4444;
 }
+
+.alert {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 3px solid #000000;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #83101b;
+  border: 3px solid #000000;
+}

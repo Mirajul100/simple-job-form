@@ -1,19 +1,27 @@
 from flask import Flask , render_template , request , flash , redirect , url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
+from flask_mail import Mail , Message
 
 app = Flask(__name__)
 
 
 app.config["SECRET_KEY"] = "mynameisanik123"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = "python3436@gmail.com"
+app.config["MAIL_PASSWORD"] = "nkhn xtoy usxn snkk"
+
 db = SQLAlchemy(app)
+mail = Mail(app)
 
 class Form(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(80)  , nullable=False)
+    email = db.Column(db.String(80)  , unique= True , nullable=False)
     phone = db.Column(db.String(80))
     position = db.Column(db.String(80))
     experience = db.Column(db.String(50))
@@ -37,6 +45,7 @@ def index():
             terms=True if request.form.get("terms") else False
             newsletter=True if request.form.get("newsletter") else False
 
+
             form = Form(first_name = first_name ,
                         last_name = last_name , 
                         email = email , 
@@ -48,6 +57,18 @@ def index():
                         newsletter = newsletter)
             db.session.add(form)
             db.session.commit()
+
+            info_message = f"Thank you for your submission\n{first_name} {last_name}\n" \
+            f"Here are your data \nFirst Name : {first_name}\nLast Name : {last_name}\nDate : {availability}\n" \
+            f"Thank you"
+
+            message = Message(subject="New form submission",
+                              sender=app.config["MAIL_USERNAME"],
+                              recipients= [email],
+                              body=info_message)
+            
+            mail.send(message)
+
             flash (f"{first_name} , Your form was submitted successfully" , "success")
             return redirect(url_for("index"))
 

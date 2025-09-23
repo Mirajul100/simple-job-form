@@ -1,22 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import ApplicationForm
 
 def index(request):
-
     if request.method == "POST":
         form = ApplicationForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            first_name   = data.get("firstName", "")
-            last_name    = data.get("lastName", "")
-            email        = data.get("email", "")
-            phone        = data.get("phone", "")
-            position     = data.get("position", "")
-            experience   = data.get("experience", "")
-            availability = data.get("availability", None)
-            terms        = data.get("terms", False)
-            newsletter   = data.get("newsletter", False)
+            first_name = data.get("first_name")
+            last_name = data.get("last_name" )
+            email = data.get("email")
+            phone = data.get("phone")
+            position = data.get("position")
+            experience = data.get("experience")
+            availability = data.get("availability")
+            terms = data.get("terms")
+            newsletter = data.get("newsletter")
 
-            print (first_name)
-    
-    return render(request , "index.html")
+            messages.success(request, "Application submitted successfully!")
+            return redirect('index')  # Redirect to avoid form resubmission
+        else:
+            messages.error(request, "Please enter all the requirement")
+            return redirect('index')
+    else:
+        form = ApplicationForm()  # Initialize form for GET request
+
+    return render(request, "index.html" , {"form" : form})

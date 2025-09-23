@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Form(models.Model):
 
     first_name = models.CharField(max_length=80)
@@ -10,8 +8,8 @@ class Form(models.Model):
     phone = models.CharField(max_length=80)
     position = models.CharField(max_length=80)
     experience = models.CharField(max_length=50)
-    available = models.DateField()
-    terms = models.BooleanField(default=False)
+    availability = models.DateField()
+    terms = models.BooleanField(default=True)
     newsletter = models.BooleanField(default=False)
 
     def __str__(self):

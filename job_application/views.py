@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 from .forms import ApplicationForm
 from .models import Form
+from django.core.mail import EmailMessage
 
 def index(request):
     try :
@@ -29,6 +30,10 @@ def index(request):
                                     availability= availability,
                                     terms = terms,
                                     newsletter = newsletter)
+                
+                email_body = f"New Job Form submitted \nThank you {first_name} {last_name}"
+                email_message = EmailMessage("Form submission conformation" , email_body , to=[email])
+                email_message.send()
 
                 messages.success(request, "Application submitted successfully!")
                 return redirect('index')  # Redirect to avoid form resubmission

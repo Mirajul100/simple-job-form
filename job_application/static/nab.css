@@ -5,15 +5,19 @@
   box-sizing: border-box;
 }
 
+
 /* Admin Navbar Styles */
 .admin-navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  background: linear-gradient(90deg, #5a67d8 0%, #6b46c1 100%);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .navbar-container {
@@ -23,19 +27,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 64px;
 }
 
 /* Brand Section */
 .navbar-brand .brand-link {
   display: flex;
   align-items: center;
+  z-index: 1001;
   gap: 0.5rem;
   text-decoration: none;
   color: rgb(195, 216, 9);
   font-weight: 600;
   font-size: 1.25rem;
-  transition: transform 0.2s ease;
 }
 
 .navbar-brand .brand-link:hover {
@@ -56,13 +60,14 @@
 .navbar-menu {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .navbar-nav {
   display: flex;
   list-style: none;
-  gap: 0.5rem;
+  gap: 1rem;
+  align-items: center;
 }
 
 .nav-item {
@@ -120,7 +125,6 @@
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 6px;
-  transition: background 0.3s ease;
 }
 
 .mobile-menu-btn:hover {
@@ -221,7 +225,7 @@
   }
   
   .dropdown-item.logout {
-    color: #ff6b6b;
+    color: #9405d1;
   }
 }
 

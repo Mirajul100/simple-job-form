@@ -1,11 +1,3 @@
-body {
-    background-color: #63a07b;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: #000000;
-    margin: 0;
-    padding: 0;
-}
-
 .about-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -19,7 +11,7 @@ body {
 
 .about-header h1 {
     font-size: 2.8rem;
-    color: #d6a33e; 
+    color: #0e0a03; 
 }
 
 .about-header p {
@@ -61,12 +53,12 @@ body {
     box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     width: 260px;
     transition: all 0.3s ease;
-    border-top: 5px solid #34ec10; /* orange top border */
+    border-top: 5px solid #6518d8; /* orange top border */
 }
 
 .team-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(100, 228, 9, 0.6), 0 0 20px rgba(33,150,243,0.5);
+    box-shadow: 0 10px 25px rgba(135, 6, 227, 0.557), 0 0 20px rgba(33,150,243,0.5);
 }
 
 .team-card img {

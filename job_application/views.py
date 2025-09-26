@@ -12,8 +12,8 @@ def index(request):
             form = ApplicationForm(request.POST)
             if form.is_valid():
                 data = form.cleaned_data
-                first_name = data.get("first_name")
-                last_name = data.get("last_name" )
+                first_name = data.get("first_name").title()
+                last_name = data.get("last_name" ).title()
                 email = data.get("email")
                 phone = data.get("phone")
                 position = data.get("position")

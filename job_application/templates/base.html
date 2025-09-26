@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">  
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Form</title>
+    <title>{% block title %} Job Application {% endblock %}</title>
+    <link rel="stylesheet" href="/static/nab.css">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/about.css">
-    <link rel="stylesheet" href="/static/nab.css">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <script src="/static/script.js"></script>
 </head>
 <body>
-<nav class="navbar admin-navbar">
+
+    {% csrf_token %}
+
+     <nav class="navbar admin-navbar">
         <div class="navbar-container">
             <div class="navbar-brand">
                 <a href="{% url 'index' %}" class="brand-link">
@@ -42,26 +46,35 @@
                 <span class="hamburger-line"></span>
             </button>
         </div>
-</nav>
+    </nav>
+    
     <div class="container">
         {% block contend %}
         {% endblock %}
     </div>
-
+    
+    <div class="nabvar-container">
+        {% block nab-contend %}
+        {% endblock %}
+    </div>
+    
     <div class="about-container">
         {% block about-contend %}
         {% endblock %}
     </div>
-
-    <div class="container">
+    
+    <div class="contact-container">
         {% block contact-contend %}
         {% endblock %}
     </div>
 
+    
+</body>
+    
     <script>
         document.getElementById('jobForm').addEventListener('submit', function(e) {
-
-
+            
+            
         });
     </script>
 </body>

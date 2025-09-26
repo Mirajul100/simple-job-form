@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import ApplicationForm
 from .models import Form
 from django.core.mail import EmailMessage
+from .admin import AdminForm
 
 def index(request):
     try :
@@ -50,3 +51,10 @@ def index(request):
 
 def about(request):
     return render(request , "about.html")
+
+def contact(request):
+    return render(request , "contact.html")
+
+def admin(request):
+    admin = AdminForm()
+    return render(request , "admin")

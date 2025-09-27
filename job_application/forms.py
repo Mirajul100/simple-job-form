@@ -11,3 +11,10 @@ class ApplicationForm(forms.Form):
     availability = forms.DateField()
     terms = forms.BooleanField(required= True)
     newsletter = forms.BooleanField(required= False)
+
+class ContactForm(forms.Form):
+
+    name = forms.CharField(max_length=80)
+    contact_email = forms.EmailField()
+    subject = forms.CharField(max_length=80)
+    message = forms.CharField(max_length=255)

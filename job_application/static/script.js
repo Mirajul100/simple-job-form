@@ -1,3 +1,6 @@
+document.getElementById('jobForm').addEventListener('submit', function(e) {
+                  
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.getElementById("mobile-menu-btn");

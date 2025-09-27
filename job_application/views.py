@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib import messages
-from .forms import ApplicationForm
+from .forms import ApplicationForm , ContactForm
 from .models import Form
 from django.core.mail import EmailMessage
-from .admin import AdminForm
+from .admin import AdminForm 
 
 def index(request):
     try :
@@ -53,6 +53,29 @@ def about(request):
     return render(request , "about.html")
 
 def contact(request):
+    
+    if request.method == "POST":
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            data = contact_form.cleaned_data
+            name = data.get("name").title()
+            contact_email = data.get("contact_email")
+            subject = data.get("subject").title()
+            message = data.get("message").capitalize()
+            
+            company_email = "python3436@gmail.com"
+            email_body = f"Name : {name}\n{contact_email}\n\n{message}"
+            email_message = EmailMessage("Contact message from Job Application" ,f"Subject : {subject}\n{email_body}" , to=[company_email])
+            email_message.send()
+            
+            messages.success(request, "Message sended successfully !")
+            return redirect('contact') 
+        else:
+            messages.error(request, "Please fill all the requirement")
+            return redirect('contact')
+    else:
+        contact_form = ContactForm()
+
     return render(request , "contact.html")
 
 def admin(request):
